@@ -1,0 +1,12 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Query {
+  """Docu de mi primer endpoint """
+  hello: String!
+  randomNumber: Float!
+
+  """Devuelve un número entero desde 0 a 10"""
+  randomFromZeroTo(to: Int): Int!
+}
