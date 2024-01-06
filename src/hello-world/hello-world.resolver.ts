@@ -49,10 +49,10 @@ export class HelloWorldResolver {
 
   @Query(() => Int, {
     name: 'randomFromZeroTo',
-    description: 'Devuelve un número entero desde 0 a 10'
+    description: 'Devuelve un número entero desde 0 hasta un número (default en 10)'
   })
   getRandomFromZeroTo(
-    @Args('to', { type: () => Int, nullable: true }) toParam: number = 6
+    @Args('to', { type: () => Int, nullable: true }) toParam: number = 10
   ): number {
     return Math.floor(Math.random() * toParam);
   }
