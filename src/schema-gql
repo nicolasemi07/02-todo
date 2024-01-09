@@ -2,11 +2,49 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Todo {
+  id: Int!
+  description: String!
+  done: Boolean!
+}
+
+"""Todo quick aggregations"""
+type AggregationsType {
+  total: Int!
+  pending: Int!
+  completed: Int!
+}
+
 type Query {
   """Docu de mi primer endpoint """
   hello: String!
   randomNumber: Float!
 
-  """Devuelve un número entero desde 0 a 10"""
+  """Devuelve un número entero desde 0 hasta un número (default en 10)"""
   randomFromZeroTo(to: Int): Int!
+  findAllTodos(status: Boolean): [Todo!]!
+  findOneTodo(todoId: Int!): Todo!
+  totalTodos: Int! @deprecated(reason: "Optimizado en Query *aggregations*")
+  completedTodos: Int! @deprecated(reason: "Optimizado en Query *aggregations*")
+  pendingTodos: Int! @deprecated(reason: "Optimizado en Query *aggregations*")
+  aggregations: AggregationsType!
+}
+
+type Mutation {
+  createTodo(createTodoInput: CreateTodoInput!): Todo!
+  updateTodo(updateTodoInput: UpdateTodoInput!): Todo!
+  removeTodo(id: Int!): Boolean!
+}
+
+input CreateTodoInput {
+  """Lo que queres hacer"""
+  description: String!
+}
+
+input UpdateTodoInput {
+  id: Int!
+
+  """Lo que queres hacer"""
+  description: String
+  done: Boolean
 }
